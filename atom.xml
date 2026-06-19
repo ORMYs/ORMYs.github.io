@@ -10,16 +10,17 @@
   <rights>All rights reserved 2026, Leo Ormys</rights>
   <subtitle>Anything</subtitle>
   <title>Territory Of Ormys</title>
-  <updated>2026-06-19T23:29:11.226Z</updated>
+  <updated>2026-06-19T23:38:00.748Z</updated>
   <entry>
     <author>
       <name>Leo Ormys</name>
     </author>
+    <category term="daily" scheme="http://example.com/categories/daily/"/>
     <category term="first day" scheme="http://example.com/tags/first-day/"/>
     <id>http://example.com/2026/06/20/First-day-here/</id>
     <link href="http://example.com/2026/06/20/First-day-here/"/>
     <published>2026-06-19T17:38:22.000Z</published>
     <title>First day here</title>
-    <updated>2026-06-19T23:29:11.226Z</updated>
+    <updated>2026-06-19T23:38:00.748Z</updated>
   </entry>
 </feed>
