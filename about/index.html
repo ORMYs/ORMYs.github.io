@@ -6,15 +6,15 @@
   
   <title>关于我 | Territory Of Ormys</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content=".tab-container { margin: 20px 0; font-family: sans-serif; }     .tab-nav { display: flex; gap: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }     .tab-btn {">
+  <meta name="description" content="title: 关于我date: 2026-06-19 11:00:00   &#x2F;* 隐藏控制开关 *&#x2F;   input[name&#x3D;&quot;about-tabs&quot;] { display: none; }   &#x2F;* 导航栏样式 *&#x2F;   .tab-nav { display: flex; border-bottom: 2px solid #eee; margin-bottom: 20px; }   .tab">
 <meta property="og:type" content="website">
 <meta property="og:title" content="关于我">
 <meta property="og:url" content="http://example.com/about/index.html">
 <meta property="og:site_name" content="Territory Of Ormys">
-<meta property="og:description" content=".tab-container { margin: 20px 0; font-family: sans-serif; }     .tab-nav { display: flex; gap: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }     .tab-btn {">
+<meta property="og:description" content="title: 关于我date: 2026-06-19 11:00:00   &#x2F;* 隐藏控制开关 *&#x2F;   input[name&#x3D;&quot;about-tabs&quot;] { display: none; }   &#x2F;* 导航栏样式 *&#x2F;   .tab-nav { display: flex; border-bottom: 2px solid #eee; margin-bottom: 20px; }   .tab">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-06-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2026-06-19T18:26:23.897Z">
+<meta property="article:modified_time" content="2026-06-19T18:29:54.409Z">
 <meta property="article:author" content="Leo Ormys">
 <meta name="twitter:card" content="summary">
   
@@ -111,45 +111,56 @@ var _hmt = _hmt || [];
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <!-- Hexo About Tab Layout -->
-<div class="hexo-about-tabs">
-  <style>
-    .tab-container { margin: 20px 0; font-family: sans-serif; }
-    .tab-nav { display: flex; gap: 10px; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 20px; }
-    .tab-btn { padding: 8px 16px; cursor: pointer; transition: all 0.3s; font-size: 14px; }
-    .tab-content { display: none; line-height: 1.6; animation: fadeIn 0.4s; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-    
-<pre><code>/* 模拟切换逻辑 (建议在 Hexo 主题中添加以下 CSS 或保持内联) */
-#tab1:checked ~ .content-1, #tab2:checked ~ .content-2 { display: block; }
-#tab1:checked ~ .tab-nav .label-1 { border-bottom: 3px solid var(--primary); color: var(--primary); }
-#tab2:checked ~ .tab-nav .label-2 { border-bottom: 3px solid var(--primary); color: var(--primary); }
-.hidden-radio { display: none; }
-</code></pre>
-<p>  </style></p>
-  <div class="tab-container">
-    <input type="radio" name="about-tabs" id="tab1" class="hidden-radio" checked>
-    <input type="radio" name="about-tabs" id="tab2" class="hidden-radio">
-    
-<pre><code>&lt;div class=&quot;tab-nav&quot;&gt;
-  &lt;label for=&quot;tab1&quot; class=&quot;tab-btn label-1&quot;&gt;📬 Short Contect&lt;/label&gt;
-  &lt;label for=&quot;tab2&quot; class=&quot;tab-btn label-2&quot;&gt;📖 More...&lt;/label&gt;
-&lt;/div&gt;
+        <hr>
+<h2 id="title-关于我date-2026-06-19-11-00-00"><a href="#title-关于我date-2026-06-19-11-00-00" class="headerlink" title="title: 关于我date: 2026-06-19 11:00:00"></a>title: 关于我<br>date: 2026-06-19 11:00:00</h2><style>
+  /* 隐藏控制开关 */
+  input[name="about-tabs"] { display: none; }
+  /* 导航栏样式 */
+  .tab-nav { display: flex; border-bottom: 2px solid #eee; margin-bottom: 20px; }
+  .tab-nav label { padding: 10px 20px; cursor: pointer; font-weight: bold; color: #888; transition: all 0.3s;}
+  .tab-nav label:hover { color: #333; }
+  /* 内容区默认隐藏 */
+  .tab-content { display: none; line-height: 1.8; }
+  /* 核心切换逻辑 */
+  #tab1:checked ~ .tab-nav .label-1,
+  #tab2:checked ~ .tab-nav .label-2 { border-bottom: 3px solid #555; color: #333; }
+  #tab1:checked ~ .content-1,
+  #tab2:checked ~ .content-2 { display: block; animation: fadeIn 0.5s; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+</style>
 
-&lt;div class=&quot;tab-content content-1&quot;&gt;
-  &lt;blockquote&gt;邮箱: 1693093228@qq.com | GitHub: https://github.com/ORMYs/&lt;/blockquote&gt;
-&lt;/div&gt;
+<div>
+  <input type="radio" id="tab1" name="about-tabs" checked>
+  <input type="radio" id="tab2" name="about-tabs">
 
-&lt;div class=&quot;tab-content content-2&quot;&gt;
-  ### 过去&lt;br&gt;追逐梦想的起航...&lt;br&gt;&lt;br&gt;### 现在&lt;br&gt;在代码与文字间穿梭...&lt;br&gt;&lt;br&gt;### 未来&lt;br&gt;向着星辰大海进发。
-&lt;/div&gt;
+  <div class="tab-nav">
+    <label for="tab1" class="label-1">📬 Short Contact</label>
+    <label for="tab2" class="label-2">📖 More...</label>
+  </div>
+
+  <div class="tab-content content-1">
+    <blockquote>
+      <strong>邮箱:</strong> 1693093228@qq.com <br>
+      <strong>GitHub:</strong> <a href="[https://github.com/ORMys/](https://github.com/ORMys/)" target="_blank">[https://github.com/ORMys/](https://github.com/ORMys/)</a>
+    </blockquote>
+  </div>
+
+  <div class="tab-content content-2">
+    <h3>过去</h3>
+    <p>追逐梦想的起航...</p>
+    
+<pre><code>&lt;h3&gt;现在&lt;/h3&gt;
+&lt;p&gt;在代码与文字间穿梭...&lt;/p&gt;
+
+&lt;h3&gt;未来&lt;/h3&gt;
+&lt;p&gt;向着星辰大海进发。&lt;/p&gt;
 </code></pre>
   </div>
 </div>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/about/index.html" data-id="cuidl1pl86x32cfocvpz--QFQ" data-title="关于我" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/about/index.html" data-id="cuidkPTNePxhDbQHnzAyPxFd0" data-title="关于我" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
