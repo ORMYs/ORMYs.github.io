@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>Leo Ormys</name>
+  </author>
+  <generator uri="https://hexo.io/">Hexo</generator>
+  <id>http://example.com/</id>
+  <link href="http://example.com/" rel="alternate"/>
+  <link href="http://example.com/atom.xml" rel="self"/>
+  <rights>All rights reserved 2026, Leo Ormys</rights>
+  <subtitle>Anything</subtitle>
+  <title>Territory Of Ormys</title>
+  <updated>2026-06-19T18:00:34.496Z</updated>
+  <entry>
+    <author>
+      <name>Leo Ormys</name>
+    </author>
+    <id>http://example.com/2026/06/20/First-day-here/</id>
+    <link href="http://example.com/2026/06/20/First-day-here/"/>
+    <published>2026-06-19T17:38:22.000Z</published>
+    <title>First day here</title>
+    <updated>2026-06-19T18:00:34.496Z</updated>
+  </entry>
+</feed>
