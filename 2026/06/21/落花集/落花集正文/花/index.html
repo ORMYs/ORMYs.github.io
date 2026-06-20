@@ -45,7 +45,9 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 <meta name="generator" content="Hexo 8.1.2"></head>
 
 <body>
@@ -143,12 +145,12 @@ var _hmt = _hmt || [];
      data-hbe-format="4"
      data-wpm="Oh, this is an invalid password. Check and try again, please."
      data-whm="Oh, this is an invalid password. Check and try again, please."
-     data-salt="64a7c1f77a7539074616a473a88b4c74ed50efa44652a6c57861434c63677234"
-     data-nonce="3a3b799a601befaaf69ec5b2"
+     data-salt="8fb7b819fe2fdecd403d98bca794c42d9f41c90069272d5a04350f918dceeec6"
+     data-nonce="89c34ed503046f06ad8751b6"
      data-kdf-iterations="250000"
      data-auto-save="false">
   <script id="hbeData" type="hbeData">
-    3a6b1c9a0d421fadd3cc79634093d8ba05c881d3e813b876f25ef321b8f269d0caacb4dde652b1e04eae96630deda00e7f23945aaa81cb702de18e44fc25cf0b2c562774c10c44388264d69c4ce3f2d5146f64d48c9b4ec4ae942ef69cfcb9d94719270b5b37437991d65d7471fa0b2422a8b4ebd950326d7c5c36904b93e99fd389dba8b87f46d013acbd34044bc9f2586cefddef34d217c3daa8fc8432c5b378b003eb698e282b11bbfee4eba5e1d7df85c6424caf59a4821b8f0a27a1e5cb559d52adaddd9bc5fedb9419947946cc12d7a7f80cfa7a0dde2a113a77c9cd6564951f1d56658b92695453df29a2dc3f89ebf2080e5507d9d89139ac52f8d2af404294391e67885734735f5bb3f29531c93bc98b9565e8a3e02d1609166b631aeb76eb0818f1bbe7e6853ad8e16b2c951c6374dc854c33f884af74f40db3c6bd538dff1d18e02a32846e41ecf565a9b99ca86fe4b50c845111cd90cdd8c78fe97c47ad26165680b0d98bcec6ba9a184005f75e97a4c47983749bb0c3f51db52fff55e4a335ade91b43f90eccdcc835a7b1
+    9febe1deda482c641219d380c25c6aa957f98eefd417f42b1dc25205ae5355e8ab5afde58642a77f4648d20c9f9bc06b481520aa4beb824feb32313c2d26954eef6c05ee58dff94de5c81e29eadc3927b50ca37200d26772124a38eb74fec5885e3e7f1fa9c8083a98381fe4609963a283e996590a9b3d623226477d34ec48263b08f9db819126ee69479fca9f51cf2ec98997cb8eb54bbe3707eca2dd88e74cc75362bd7dadb3f6072d2ad85c1b7a2f11e092d8c11a0d4fdca21af2169bb13502bb1afb3be669e121e00246bc0730a1876e162dffa1047380bf34bf2cc68b4844b833e4dd8f79ca6c473e48a792de670dacc7286182acaeeaf6dc5ba84b47fc7d8f8ac1ce2e2319b7e47b8d6968ae28818f2a47133ce4f3555e81e1ac25e98fdf9c35311cc443c1fbe7fc56f7ba3c015aa90a7171d20902f6ed6177783abb7b80a897b97dc48a88a46f313219d703ec74925e27e14b61df2d29f9461481b79083a4be525f667599ce4b64623816f2f83d150c249747a2775098582a534aca471f5eb8a4da703cdc815ab4cb5cc1433352
   </script>
   <div class="hbe hbe-content">
     <form id="hbeForm" class="hbe hbe-form" onsubmit="return false">
@@ -167,7 +169,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/06/21/%E8%90%BD%E8%8A%B1%E9%9B%86/%E8%90%BD%E8%8A%B1%E9%9B%86%E6%AD%A3%E6%96%87/%E8%8A%B1/" data-id="cuidvmbRDYUYs6jPUwRuNmMhS" data-title="花" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/06/21/%E8%90%BD%E8%8A%B1%E9%9B%86/%E8%90%BD%E8%8A%B1%E9%9B%86%E6%AD%A3%E6%96%87/%E8%8A%B1/" data-id="cuiddFutWSsywBMAr6yzAVLjS" data-title="花" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -337,5 +339,205 @@ var _hmt = _hmt || [];
 
 
   </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 【自动灯箱引擎】
+    // 自动寻找文章正文（.article-entry）里的所有图片
+    var articleImages = document.querySelectorAll('.article-entry img');
+    
+    articleImages.forEach(function(img) {
+      // 排除掉已经带链接的图片（比如你故意让图片跳转到别的网站）
+      if (img.parentElement.tagName.toLowerCase() === 'a') return;
+
+      // 创造一个隐形的魔法外衣 (a 标签)
+      var wrapper = document.createElement('a');
+      wrapper.href = img.src; // 链接指向图片原图
+      wrapper.setAttribute('data-fancybox', 'gallery'); // 分配到 "gallery" 组，实现左右滑动切换
+      wrapper.setAttribute('data-caption', img.alt || ''); // 如果你写了图片描述，它会变成灯箱底部的高级字幕
+
+      // 偷梁换柱：用这个 a 标签把图片包裹起来
+      img.parentNode.insertBefore(wrapper, img);
+      wrapper.appendChild(img);
+    });
+
+    // 正式启动 Fancybox 引擎
+    Fancybox.bind("[data-fancybox]", {
+      // 极客专属配置区
+      Images: {
+        zoom: true, // 开启平滑的缩放动画
+      },
+      Toolbar: {
+        display: [
+          "zoom",        // 放大按钮
+          "slideShow",   // 自动播放幻灯片
+          "fullscreen",  // 全屏按钮
+          "download",    // 允许访客下载你的原图
+          "close"        // 关闭按钮
+        ]
+      }
+    });
+  });
+</script>
+
+<style>
+  /* 图片视觉微调：暗示访客“我是可以点的” */
+  .article-entry img {
+    cursor: zoom-in; /* 鼠标放上去变成放大镜 🔍 */
+    border-radius: 8px; /* 给图片加个圆润的边角，更契合现代审美 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* 鼠标悬浮时，图片轻微浮起 */
+  .article-entry img:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  }
+</style>
+
+<div id="reading-progress"></div>
+
+<div id="custom-back-to-top" title="回到顶部">
+  <span class="progress-text">0%</span>
+  <span class="rocket-icon">🚀</span>
+</div>
+
+<style>
+  /* 屏蔽原主题呆板的向上箭头 */
+  #totop { display: none !important; }
+
+  /* 进度条样式 */
+  #reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: #258fb8; /* 你的主题蓝 */
+    z-index: 99999;
+    transition: width 0.1s ease;
+    box-shadow: 0 0 10px rgba(37,143,184,0.5);
+  }
+
+  /* 回到顶部悬浮球样式 */
+  #custom-back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  #custom-back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  #custom-back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(37,143,184,0.3);
+    border: 2px solid #258fb8;
+  }
+  
+  /* 按钮里的百分比文字 */
+  .progress-text {
+    font-size: 0.85em;
+    color: #258fb8;
+    font-weight: bold;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  
+  /* 悬停时冒出来的火箭 */
+  .rocket-icon {
+    position: absolute;
+    font-size: 1.2em;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+  #custom-back-to-top:hover .progress-text {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  #custom-back-to-top:hover .rocket-icon {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+  // --- 核心大脑逻辑控制区 ---
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // 【功能一 & 功能三】进度条与回到顶部百分比的计算
+    var progressBar = document.getElementById('reading-progress');
+    var backToTopBtn = document.getElementById('custom-back-to-top');
+    var progressText = backToTopBtn.querySelector('.progress-text');
+
+    window.addEventListener('scroll', function() {
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+      var clientHeight = document.documentElement.clientHeight || window.innerHeight;
+      
+      // 核心计算公式
+      var scrollPercent = scrollTop / (scrollHeight - clientHeight);
+      var percentRound = Math.round(scrollPercent * 100);
+      
+      // 防止页面过短导致数值异常
+      if (isNaN(percentRound)) percentRound = 0;
+      if (percentRound > 100) percentRound = 100;
+      if (percentRound < 0) percentRound = 0;
+
+      // 实时改变顶部进度条的长度
+      progressBar.style.width = percentRound + '%';
+
+      // 实时改变悬浮球里的数字
+      progressText.innerText = percentRound + '%';
+
+      // 滚动超过 100 像素才显示悬浮球，否则隐藏
+      if (scrollTop > 100) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+
+    // 悬浮球的点击事件：丝滑回到顶部
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // 这个属性是平滑滚动的灵魂
+      });
+    });
+
+    // 【功能二】极客版 AOS 注入：无需逐个修改页面代码
+    // 这里我们用 JS 自动给主页文章、项目卡片、时间轴和分类盒子上“魔法”
+    var animateElements = document.querySelectorAll('.article, .project-card, .timeline-item, .ormys-root-li');
+    animateElements.forEach(function(el) {
+      el.setAttribute('data-aos', 'fade-up'); // 统一设置为向上滑入
+      el.setAttribute('data-aos-duration', '800'); // 动画持续 0.8 秒
+    });
+
+    // 正式激活 AOS 动画引擎
+    AOS.init({
+      once: true, // 向下滚动时触发一次动画，向上滚不再重复触发，防止眼晕
+      offset: 60  // 元素距离屏幕底部还有 60px 时就开始滑入
+    });
+  });
+</script>
 </body>
 </html>

@@ -44,7 +44,9 @@ var _hmt = _hmt || [];
   s.parentNode.insertBefore(hm, s);
 })();
 </script>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 <meta name="generator" content="Hexo 8.1.2"></head>
 
 <body>
@@ -150,7 +152,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/guestbook/index.html" data-id="cuidUr3IIP1XTEFgYsXaJXZOR" data-title="guestbook" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/guestbook/index.html" data-id="cuidnwdgjya6moJAHcRHdBz3W" data-title="guestbook" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -317,5 +319,205 @@ var _hmt = _hmt || [];
 
 
   </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 【自动灯箱引擎】
+    // 自动寻找文章正文（.article-entry）里的所有图片
+    var articleImages = document.querySelectorAll('.article-entry img');
+    
+    articleImages.forEach(function(img) {
+      // 排除掉已经带链接的图片（比如你故意让图片跳转到别的网站）
+      if (img.parentElement.tagName.toLowerCase() === 'a') return;
+
+      // 创造一个隐形的魔法外衣 (a 标签)
+      var wrapper = document.createElement('a');
+      wrapper.href = img.src; // 链接指向图片原图
+      wrapper.setAttribute('data-fancybox', 'gallery'); // 分配到 "gallery" 组，实现左右滑动切换
+      wrapper.setAttribute('data-caption', img.alt || ''); // 如果你写了图片描述，它会变成灯箱底部的高级字幕
+
+      // 偷梁换柱：用这个 a 标签把图片包裹起来
+      img.parentNode.insertBefore(wrapper, img);
+      wrapper.appendChild(img);
+    });
+
+    // 正式启动 Fancybox 引擎
+    Fancybox.bind("[data-fancybox]", {
+      // 极客专属配置区
+      Images: {
+        zoom: true, // 开启平滑的缩放动画
+      },
+      Toolbar: {
+        display: [
+          "zoom",        // 放大按钮
+          "slideShow",   // 自动播放幻灯片
+          "fullscreen",  // 全屏按钮
+          "download",    // 允许访客下载你的原图
+          "close"        // 关闭按钮
+        ]
+      }
+    });
+  });
+</script>
+
+<style>
+  /* 图片视觉微调：暗示访客“我是可以点的” */
+  .article-entry img {
+    cursor: zoom-in; /* 鼠标放上去变成放大镜 🔍 */
+    border-radius: 8px; /* 给图片加个圆润的边角，更契合现代审美 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* 鼠标悬浮时，图片轻微浮起 */
+  .article-entry img:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+  }
+</style>
+
+<div id="reading-progress"></div>
+
+<div id="custom-back-to-top" title="回到顶部">
+  <span class="progress-text">0%</span>
+  <span class="rocket-icon">🚀</span>
+</div>
+
+<style>
+  /* 屏蔽原主题呆板的向上箭头 */
+  #totop { display: none !important; }
+
+  /* 进度条样式 */
+  #reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: #258fb8; /* 你的主题蓝 */
+    z-index: 99999;
+    transition: width 0.1s ease;
+    box-shadow: 0 0 10px rgba(37,143,184,0.5);
+  }
+
+  /* 回到顶部悬浮球样式 */
+  #custom-back-to-top {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  #custom-back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+  }
+  #custom-back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(37,143,184,0.3);
+    border: 2px solid #258fb8;
+  }
+  
+  /* 按钮里的百分比文字 */
+  .progress-text {
+    font-size: 0.85em;
+    color: #258fb8;
+    font-weight: bold;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  
+  /* 悬停时冒出来的火箭 */
+  .rocket-icon {
+    position: absolute;
+    font-size: 1.2em;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+  #custom-back-to-top:hover .progress-text {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  #custom-back-to-top:hover .rocket-icon {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+  // --- 核心大脑逻辑控制区 ---
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // 【功能一 & 功能三】进度条与回到顶部百分比的计算
+    var progressBar = document.getElementById('reading-progress');
+    var backToTopBtn = document.getElementById('custom-back-to-top');
+    var progressText = backToTopBtn.querySelector('.progress-text');
+
+    window.addEventListener('scroll', function() {
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+      var clientHeight = document.documentElement.clientHeight || window.innerHeight;
+      
+      // 核心计算公式
+      var scrollPercent = scrollTop / (scrollHeight - clientHeight);
+      var percentRound = Math.round(scrollPercent * 100);
+      
+      // 防止页面过短导致数值异常
+      if (isNaN(percentRound)) percentRound = 0;
+      if (percentRound > 100) percentRound = 100;
+      if (percentRound < 0) percentRound = 0;
+
+      // 实时改变顶部进度条的长度
+      progressBar.style.width = percentRound + '%';
+
+      // 实时改变悬浮球里的数字
+      progressText.innerText = percentRound + '%';
+
+      // 滚动超过 100 像素才显示悬浮球，否则隐藏
+      if (scrollTop > 100) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    });
+
+    // 悬浮球的点击事件：丝滑回到顶部
+    backToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // 这个属性是平滑滚动的灵魂
+      });
+    });
+
+    // 【功能二】极客版 AOS 注入：无需逐个修改页面代码
+    // 这里我们用 JS 自动给主页文章、项目卡片、时间轴和分类盒子上“魔法”
+    var animateElements = document.querySelectorAll('.article, .project-card, .timeline-item, .ormys-root-li');
+    animateElements.forEach(function(el) {
+      el.setAttribute('data-aos', 'fade-up'); // 统一设置为向上滑入
+      el.setAttribute('data-aos-duration', '800'); // 动画持续 0.8 秒
+    });
+
+    // 正式激活 AOS 动画引擎
+    AOS.init({
+      once: true, // 向下滚动时触发一次动画，向上滚不再重复触发，防止眼晕
+      offset: 60  // 元素距离屏幕底部还有 60px 时就开始滑入
+    });
+  });
+</script>
 </body>
 </html>
