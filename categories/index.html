@@ -129,100 +129,48 @@ var _hmt = _hmt || [];
         
           <div class="custom-category-page" style="padding: 20px 0;">
             <style>
-              /* 强制清除所有默认列表样式（干掉黑点） */
-              .custom-category-page .category-list,
-              .custom-category-page .category-list-child {
-                list-style: none !important;
-                padding: 0 !important;
-                margin: 0 !important;
-              }
-
-              /* 🌟 一级大分类：宽敞的白色卡片 */
-              .custom-category-page .category-list > .category-list-item {
-                background: #fff !important;
-                border: 1px solid #eef2f5 !important;
-                border-radius: 12px !important;
-                padding: 20px 25px !important;
-                margin-bottom: 25px !important;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.03) !important;
-                display: block !important;
-              }
-
-              /* 🌟 一级分类的标题 */
-              .custom-category-page .category-list > .category-list-item > .category-list-link {
-                font-size: 1.4em !important;
-                font-weight: bold !important;
-                color: #333 !important;
-                border-left: 5px solid #258fb8 !important;
-                padding-left: 12px !important;
-                text-decoration: none !important;
-                display: inline-block !important;
-              }
-
-              /* 🌟 文章数量的精美气泡（解决数字粘连问题） */
-              .custom-category-page .category-list-count {
-                background: #f1f3f5 !important;
-                color: #666 !important;
-                font-size: 0.85em !important;
-                padding: 3px 10px !important;
-                border-radius: 20px !important;
-                margin-left: 12px !important;
-                font-weight: normal !important;
-                vertical-align: text-bottom !important;
-              }
-              /* 清除 Hexo 默认可能带的括号 */
-              .custom-category-page .category-list-count::before,
-              .custom-category-page .category-list-count::after {
-                content: none !important;
-                display: none !important;
-              }
-
-              /* 🌿 子分类区域：左侧虚线引导 */
-              .custom-category-page .category-list-child {
-                margin-top: 20px !important;
-                padding-left: 20px !important;
-                border-left: 2px dashed #dcdcdc !important;
-              }
-
-              /* 🌿 子分类的每一行（横条悬浮卡片效果） */
-              .custom-category-page .category-list-child .category-list-item {
-                background: #fdfdfd !important;
-                border: 1px solid #f0f0f0 !important;
-                border-radius: 8px !important;
-                padding: 12px 18px !important;
-                margin-bottom: 10px !important;
-                display: flex !important;
-                justify-content: space-between !important; /* 文字在左，数字在右 */
-                align-items: center !important;
-                transition: all 0.3s ease !important;
-              }
-              .custom-category-page .category-list-child .category-list-item:hover {
-                border-color: #258fb8 !important;
-                box-shadow: 0 4px 10px rgba(37,143,184,0.08) !important;
-                transform: translateX(5px) !important;
-              }
-
-              /* 🌿 子分类的链接文字 */
-              .custom-category-page .category-list-child .category-list-link {
-                color: #555 !important;
-                font-size: 1.05em !important;
-                text-decoration: none !important;
-                transition: color 0.3s !important;
-              }
-              .custom-category-page .category-list-child .category-list-item:hover > .category-list-link {
-                color: #258fb8 !important;
-                font-weight: bold !important;
-              }
-
-              /* 🌿 子分类的数量气泡：高亮蓝色 */
-              .custom-category-page .category-list-child .category-list-count {
-                background: #258fb8 !important;
-                color: #fff !important;
-                margin-left: 0 !important; /* 被 flex 推到右边，不需要左边距了 */
-              }
+              .custom-category-page ul.category-list { padding: 0; margin: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 15px; }
+              .custom-category-page li.category-list-item { background: #fdfdfd; border: 1px solid #eaeaea; border-radius: 8px; padding: 15px 20px; min-width: 200px; flex: 1 1 200px; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+              .custom-category-page li.category-list-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-3px); border-color: #dcdcdc; }
+              .custom-category-page a.category-list-link { text-decoration: none; color: #444; font-weight: bold; font-size: 1.1em; }
+              .custom-category-page span.category-list-count { background: #258fb8; color: white; font-size: 0.85em; padding: 2px 10px; border-radius: 12px; }
+              .custom-category-page span.category-list-count::before,
+              .custom-category-page span.category-list-count::after { content: none !important; }
             </style>
             
-            <ul class="category-list-list"><li class="category-list-list-item"><a class="category-list-list-link" href="/categories/daily/">daily</a><span class="category-list-list-count">1</span></li><li class="category-list-list-item"><a class="category-list-list-link" href="/categories/past/">past</a><span class="category-list-list-count">27</span><ul class="category-list-list-child"><li class="category-list-list-item"><a class="category-list-list-link" href="/categories/past/past-diaries/">past_diaries</a><span class="category-list-list-count">20</span></li><li class="category-list-list-item"><a class="category-list-list-link" href="/categories/past/%E8%90%BD%E8%8A%B1%E9%9B%86/">落花集</a><span class="category-list-list-count">7</span><ul class="category-list-list-child"><li class="category-list-list-item"><a class="category-list-list-link" href="/categories/past/%E8%90%BD%E8%8A%B1%E9%9B%86/Leo%E7%9A%84%E5%9B%9E%E5%BF%86/">Leo的回忆</a><span class="category-list-list-count">3</span></li><li class="category-list-list-item"><a class="category-list-list-link" href="/categories/past/%E8%90%BD%E8%8A%B1%E9%9B%86/%E8%90%BD%E8%8A%B1%E9%9B%86%E6%AD%A3%E6%96%87/">落花集正文</a><span class="category-list-list-count">3</span></li></ul></li></ul></li></ul>
+            <ul class="category-list">
+              
+                <li class="category-list-item">
+                  <a class="category-list-link" href="/categories/daily/">daily</a>
+                  <span class="category-list-count">1</span>
+                </li>
+              
+                <li class="category-list-item">
+                  <a class="category-list-link" href="/categories/past/">past</a>
+                  <span class="category-list-count">27</span>
+                </li>
+              
+                <li class="category-list-item">
+                  <a class="category-list-link" href="/categories/past/past-diaries/">past_diaries</a>
+                  <span class="category-list-count">20</span>
+                </li>
+              
+                <li class="category-list-item">
+                  <a class="category-list-link" href="/categories/past/%E8%90%BD%E8%8A%B1%E9%9B%86/">落花集</a>
+                  <span class="category-list-count">7</span>
+                </li>
+              
+                <li class="category-list-item">
+                  <a class="category-list-link" href="/categories/past/%E8%90%BD%E8%8A%B1%E9%9B%86/Leo%E7%9A%84%E5%9B%9E%E5%BF%86/">Leo的回忆</a>
+                  <span class="category-list-count">3</span>
+                </li>
+              
+                <li class="category-list-item">
+                  <a class="category-list-link" href="/categories/past/%E8%90%BD%E8%8A%B1%E9%9B%86/%E8%90%BD%E8%8A%B1%E9%9B%86%E6%AD%A3%E6%96%87/">落花集正文</a>
+                  <span class="category-list-count">3</span>
+                </li>
+              
+            </ul>
           </div>
         
 
@@ -234,7 +182,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/categories/index.html" data-id="cuidy7vYJO5W7aixVM5Kx98Ib" data-title="categories" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/categories/index.html" data-id="cuidlvPpw_Njpk7NroHXVuCDQ" data-title="categories" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
