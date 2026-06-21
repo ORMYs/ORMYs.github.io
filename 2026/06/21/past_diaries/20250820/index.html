@@ -225,12 +225,12 @@ var _hmt = _hmt || [];
      data-hbe-format="4"
      data-wpm="Oh, this is an invalid password. Check and try again, please."
      data-whm="Oh, this is an invalid password. Check and try again, please."
-     data-salt="7b14aed6ee7a95c161b3943d1bceec18cd25ac889a46a03438b869a9730da0e1"
-     data-nonce="cb7282ab6f2ecba9bfb4e1b6"
+     data-salt="3636e70a86388df1ed21d7248bd308fc17fe9d10256bf25a5665b4c730cb8aff"
+     data-nonce="7ff7d936efbcd0e12a17922f"
      data-kdf-iterations="250000"
      data-auto-save="false">
   <script id="hbeData" type="hbeData">
-    cfa42ea838e3531e30ada326fa8f71c73f07d80f988cad9605420c91b8deb6d67d8796aca6a9738c01a91a4aeee59d9efd6bf7647ccdda04418944727b4152e7ee31fef21a3213f75533c2786f49cc2078b3d5b101360290a4c1892179ae7d9c66225430847b1047bb068fd4a6fb627a8c247c52e7da60ac0031138995da87d08de5239531416590438269be1793ab82ae5443a612d84c39ffe5a22d23bd058e42205a684bb2f3
+    8f39b9cbf5e2be14b10536b95e607573ac6a6e6468294de1a10193ce4da7463b548ab56c8ea2e7a4efd600bea850f5dcb492d17dc896148a9aef933d8b81da5240fea81351ba6c6222ebe41d8a4c25258c31270c5fce6b25322da3f0f69f51c7d961bf4951ded6c2a2e8209046ab25f4149df15a85fac9c7a8e07e1294fefb5ac78d14fc2d62a499da9db1ac9e5ac81ff9e72fd5a1cbd50e1e4094e77e4bc13809183ed9628338
   </script>
   <div class="hbe hbe-content">
     <form id="hbeForm" class="hbe hbe-form" onsubmit="return false">
@@ -249,7 +249,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/06/21/past_diaries/20250820/" data-id="cuidbff4lNwWDcMTvJv-KTYHJ" data-title="20250820" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/06/21/past_diaries/20250820/" data-id="cuidEYJXcWHGO-pM1cULUGKR0" data-title="20250820" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -421,6 +421,20 @@ var _hmt = _hmt || [];
   </div>
   <div id="reading-progress"></div>
 
+  <div id="search-toggle" title="全局搜索">
+    <span>🔍</span>
+  </div>
+
+  <div id="local-search-overlay">
+    <div class="search-popup">
+      <div class="search-header">
+        <input type="text" id="local-search-input" placeholder="输入关键词搜索领地..." autocomplete="off">
+        <span class="search-close-btn">✖</span>
+      </div>
+      <div id="local-search-result"></div>
+    </div>
+  </div>
+
   <div id="dark-mode-toggle" title="切换深色模式">
     <span class="mode-icon">🌙</span>
   </div>
@@ -521,6 +535,43 @@ var _hmt = _hmt || [];
     /* 图片交互 */
     .article-entry img { cursor: zoom-in; border-radius: 8px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .article-entry img:hover { transform: scale(1.01); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+
+    /* ================= 细节增强：定制专属滚动条 ================= */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: rgba(0,0,0,0.02); }
+    html[data-theme="dark"] ::-webkit-scrollbar-track { background: #12161f; }
+    ::-webkit-scrollbar-thumb { background: #258fb8; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb:hover { background: #1a6b8c; }
+
+    /* ================= 搜索组件样式 ================= */
+    /* 悬浮搜索按钮 (放在月亮上方) */
+    #search-toggle { position: fixed; bottom: 100px; left: 40px; width: 50px; height: 50px; background: #fff; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 9999; transition: all 0.3s ease; font-size: 1.2em; }
+    #search-toggle:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(37,143,184,0.3); border: 2px solid #258fb8; }
+    html[data-theme="dark"] #search-toggle { background: #1e2430 !important; border-color: #2c3545 !important; }
+
+    /* 搜索全屏遮罩与弹窗 */
+    #local-search-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.4); backdrop-filter: blur(5px); z-index: 999999; display: none; justify-content: center; align-items: flex-start; padding-top: 12vh; }
+    .search-popup { background: #fff; border-radius: 12px; width: 90%; max-width: 650px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); overflow: hidden; animation: searchFadeIn 0.3s; }
+    @keyframes searchFadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    .search-header { display: flex; padding: 20px; border-bottom: 1px solid #f0f0f0; background: #fdfdfd; align-items: center; }
+    #local-search-input { flex: 1; border: none; outline: none; font-size: 1.15em; background: transparent; color: #333; }
+    .search-close-btn { cursor: pointer; font-size: 1.2em; color: #999; transition: color 0.3s; }
+    .search-close-btn:hover { color: #ff4d4f; }
+    #local-search-result { max-height: 60vh; overflow-y: auto; padding: 20px; }
+    .search-result-list { list-style: none !important; padding: 0 !important; margin: 0 !important; }
+    .search-result-list li { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px dashed #eee; }
+    .search-result-list li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .search-result-title { font-size: 1.2em; color: #258fb8 !important; font-weight: bold; text-decoration: none; display: block; margin-bottom: 8px; }
+    .search-result-content { font-size: 0.9em; color: #666; line-height: 1.6; }
+    .search-keyword { background: #ffe58f; color: #d46b08; padding: 0 4px; border-radius: 4px; font-weight: bold; }
+    
+    /* 深色模式下的搜索界面适配 */
+    html[data-theme="dark"] .search-popup { background: #1e2430; }
+    html[data-theme="dark"] .search-header { background: #1a202c; border-color: #2c3545; }
+    html[data-theme="dark"] #local-search-input { color: #e2e8f0; }
+    html[data-theme="dark"] .search-result-list li { border-color: #2c3545; }
+    html[data-theme="dark"] .search-result-content { color: #a9b0c0; }
+    html[data-theme="dark"] .search-keyword { background: #5c3b04; color: #ffb84d; }
   </style>
 
   <script>
@@ -562,6 +613,123 @@ var _hmt = _hmt || [];
       var animateElements = document.querySelectorAll('.article, .project-card, .timeline-item, .ormys-root-li');
       animateElements.forEach(function(el) { el.setAttribute('data-aos', 'fade-up'); el.setAttribute('data-aos-duration', '800'); });
       if (typeof AOS !== 'undefined') AOS.init({ once: true, offset: 60 });
+      // ================= 细节魔法：网页动态标题 =================
+      var OriginTitle = document.title;
+      var titleTime;
+      document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+          document.title = '(つェ⊂) 哎呀，你跑哪里去了~ ';
+          clearTimeout(titleTime);
+        } else {
+          document.title = '(*゜ロ゜)ノ 欢迎领主回来！ ';
+          titleTime = setTimeout(function() {
+            document.title = OriginTitle;
+          }, 2000);
+        }
+      });
+
+      // ================= 核心引擎：全局本地搜索 =================
+      // ================= 核心引擎：全局本地搜索 (多维增强版) =================
+      var searchOverlay = document.getElementById('local-search-overlay');
+      var searchInput = document.getElementById('local-search-input');
+      var searchResult = document.getElementById('local-search-result');
+      var searchBtn = document.getElementById('search-toggle');
+      var closeBtn = document.querySelector('.search-close-btn');
+      var searchData = null;
+
+      // 打开搜索面板并请求 XML 数据
+      searchBtn.addEventListener('click', function() {
+        searchOverlay.style.display = 'flex';
+        setTimeout(function(){ searchInput.focus(); }, 100); 
+        
+        if (!searchData) {
+          searchResult.innerHTML = '<div style="text-align:center;color:#888;">正在建立神经链接...</div>';
+          fetch('/search.xml').then(res => res.text()).then(str => {
+            var xmlDoc = new window.DOMParser().parseFromString(str, "text/xml");
+            var entries = xmlDoc.getElementsByTagName('entry');
+            searchData = Array.from(entries).map(function(node) {
+              return {
+                title: node.getElementsByTagName('title')[0] ? node.getElementsByTagName('title')[0].textContent : '',
+                link: node.getElementsByTagName('url')[0] ? node.getElementsByTagName('url')[0].textContent : '',
+                content: node.getElementsByTagName('content')[0] ? node.getElementsByTagName('content')[0].textContent.replace(/<[^>]+>/g,"") : '',
+                // 🌟 新增：提取文章的标签和分类数据
+                tags: Array.from(node.getElementsByTagName('tag')).map(t => t.textContent).join(' '),
+                categories: Array.from(node.getElementsByTagName('category')).map(c => c.textContent).join(' ')
+              };
+            });
+            searchResult.innerHTML = '<div style="text-align:center;color:#888;">数据加载完毕，请开始搜索！</div>';
+          }).catch(e => {
+            searchResult.innerHTML = '<div style="text-align:center;color:#ff4d4f;">数据读取失败，请检查 search.xml 是否生成。</div>';
+          });
+        }
+      });
+
+      // 关闭搜索面板
+      closeBtn.addEventListener('click', function() { searchOverlay.style.display = 'none'; });
+      window.addEventListener('keydown', function(e) { if(e.key === 'Escape') searchOverlay.style.display = 'none'; });
+
+      // 实时检索与高亮逻辑
+      searchInput.addEventListener('input', function() {
+        var keyword = this.value.trim().toLowerCase();
+        searchResult.innerHTML = '';
+        if (!keyword || !searchData) return;
+        
+        var resultHTML = '<ul class="search-result-list">';
+        var matchCount = 0;
+
+        searchData.forEach(function(item) {
+          // 统一转小写进行匹配比对
+          var title = item.title.toLowerCase();
+          var content = item.content.toLowerCase();
+          var tagsStr = item.tags.toLowerCase();
+          var catsStr = item.categories.toLowerCase();
+          
+          // 🌟 判断四个维度是否包含关键词
+          var titleMatch = title.indexOf(keyword) > -1;
+          var contentMatch = content.indexOf(keyword) > -1;
+          var tagMatch = tagsStr.indexOf(keyword) > -1;
+          var catMatch = catsStr.indexOf(keyword) > -1;
+          
+          // 只要有一个维度匹配上了，就把这篇文章展示出来
+          if (titleMatch || contentMatch || tagMatch || catMatch) {
+            matchCount++;
+            var displayTitle = item.title.replace(new RegExp(keyword, "gi"), '<span class="search-keyword">$&</span>');
+            
+            // 🌟 渲染分类和标签，如果搜中了，也会高亮显示
+            var displayMeta = '';
+            if (item.categories || item.tags) {
+              var highlightCats = item.categories.replace(new RegExp(keyword, "gi"), '<span class="search-keyword">$&</span>');
+              var highlightTags = item.tags.replace(new RegExp(keyword, "gi"), '<span class="search-keyword">$&</span>');
+              displayMeta = '<div style="font-size: 0.85em; color: #888; margin-bottom: 8px;">';
+              if (item.categories) displayMeta += '📁 ' + highlightCats + ' &nbsp;&nbsp;';
+              if (item.tags) displayMeta += '🏷️ ' + highlightTags;
+              displayMeta += '</div>';
+            }
+
+            var displayContent = '';
+            if (contentMatch) {
+              var index = content.indexOf(keyword);
+              var start = Math.max(0, index - 30);
+              var end = Math.min(content.length, index + 80);
+              displayContent = item.content.substring(start, end);
+              displayContent = displayContent.replace(new RegExp(keyword, "gi"), '<span class="search-keyword">$&</span>');
+              displayContent = (start > 0 ? '...' : '') + displayContent + '...';
+            } else {
+              displayContent = item.content.substring(0, 100) + '...';
+            }
+            
+            // 将标题、标签分类信息、正文摘要组合成卡片
+            resultHTML += '<li><a href="' + item.link + '" class="search-result-title">' + displayTitle + '</a>' + displayMeta + '<p class="search-result-content">' + displayContent + '</p></li>';
+          }
+        });
+        
+        if (matchCount === 0) {
+          resultHTML = '<div style="text-align:center;color:#888;padding-top:20px;">没有找到与 "'+ keyword +'" 相关的记忆碎片...</div>';
+        } else {
+          resultHTML += '</ul>';
+        }
+        searchResult.innerHTML = resultHTML;
+      });
     });
   </script>
 </body>
