@@ -46,6 +46,85 @@ var _hmt = _hmt || [];
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" />
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+<style>
+    /* 1. 彻底歼灭原主题的背景图和白底 */
+    html[data-theme="dark"],
+    html[data-theme="dark"] body,
+    html[data-theme="dark"] #container {
+      background: #12161f !important;
+      background-image: none !important; /* 👈 核心必杀技：干掉原有的白色碎花背景图 */
+    }
+
+    /* 2. 强制翻转所有正文和提示语颜色（修复加密插件的黑字） */
+    html[data-theme="dark"] body,
+    html[data-theme="dark"] .article-entry,
+    html[data-theme="dark"] .article-entry p,
+    html[data-theme="dark"] .widget {
+      color: #c4c9d4 !important;
+    }
+
+    /* 3. 卡片底色统一暗化 */
+    html[data-theme="dark"] .article-inner,
+    html[data-theme="dark"] .widget,
+    html[data-theme="dark"] .ormys-root-li,
+    html[data-theme="dark"] .ormys-child-card,
+    html[data-theme="dark"] .project-card,
+    html[data-theme="dark"] .timeline-desc,
+    html[data-theme="dark"] #custom-page-nav a,
+    html[data-theme="dark"] #custom-back-to-top,
+    html[data-theme="dark"] #dark-mode-toggle {
+      background: #1e2430 !important;
+      border-color: #2c3545 !important;
+      color: #c4c9d4 !important;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+    }
+
+    /* 4. 修复文章外围信息（干掉诡异的白色文字阴影） */
+    html[data-theme="dark"] .article-date,
+    html[data-theme="dark"] .article-category-link,
+    html[data-theme="dark"] .archive-year,
+    html[data-theme="dark"] .article-meta * {
+      color: #8b95a5 !important;
+      text-shadow: none !important; /* 👈 去除阴间白光特效 */
+    }
+
+    /* 5. 大标题高亮 */
+    html[data-theme="dark"] .article-title,
+    html[data-theme="dark"] .widget-title,
+    html[data-theme="dark"] .ormys-link,
+    html[data-theme="dark"] .timeline-title a,
+    html[data-theme="dark"] .project-title,
+    html[data-theme="dark"] h1, html[data-theme="dark"] h2, html[data-theme="dark"] h3 {
+      color: #e2e8f0 !important;
+    }
+
+    /* 6. 密码输入框和按钮适配 */
+    html[data-theme="dark"] input[type="password"],
+    html[data-theme="dark"] input[type="text"] {
+      background: #12161f !important;
+      color: #e2e8f0 !important;
+      border: 1px solid #2c3545 !important;
+    }
+
+    /* 7. 保护眼睛：降低图片亮度 */
+    html[data-theme="dark"] img,
+    html[data-theme="dark"] iframe {
+      filter: brightness(0.85) contrast(1.1);
+      transition: filter 0.3s ease;
+    }
+    html[data-theme="dark"] img:hover {
+      filter: brightness(1) contrast(1.1); /* 鼠标放上去恢复原样 */
+    }
+  </style>
+
+  <script>
+    (function() {
+      var savedTheme = localStorage.getItem('ormys-theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
 <meta name="generator" content="Hexo 8.1.2"></head>
 
 <body>
@@ -143,7 +222,7 @@ var _hmt = _hmt || [];
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/06/20/First-day-here/" data-id="cuidDO94TZcQv5xbHW9TPyzry" data-title="First day here" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/06/20/First-day-here/" data-id="cuidHqa4oyC516XM8MZ8U_zfD" data-title="First day here" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -308,205 +387,150 @@ var _hmt = _hmt || [];
 
 
   </div>
+  <div id="reading-progress"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <div id="dark-mode-toggle" title="切换深色模式">
+    <span class="mode-icon">🌙</span>
+  </div>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // 【自动灯箱引擎】
-    // 自动寻找文章正文（.article-entry）里的所有图片
-    var articleImages = document.querySelectorAll('.article-entry img');
+  <div id="custom-back-to-top" title="回到顶部">
+    <span class="progress-text">0%</span>
+    <span class="rocket-icon">🚀</span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+ <style>
+    /* =======================================
+       1. 深色模式：绝对抹杀层 (解决白底断层)
+       ======================================= */
+    /* 强行穿透洋葱结构，干掉所有中间层的白色背景 */
+    html[data-theme="dark"], 
+    html[data-theme="dark"] body, 
+    html[data-theme="dark"] #container, 
+    html[data-theme="dark"] #wrap {
+      background-color: #12161f !important;
+      background-image: none !important;
+    }
+
+    /* ！！解救佩德里：强制把头部的遮罩变回透明！！ */
+    html[data-theme="dark"] .outer,
+    html[data-theme="dark"] #header,
+    html[data-theme="dark"] #header-outer {
+      background-color: transparent !important;
+    }
+
+    /* 修复正文字体发黑、加密插件看不清的问题 */
+    html[data-theme="dark"] .article-entry,
+    html[data-theme="dark"] .article-entry p,
+    html[data-theme="dark"] .widget {
+      color: #c4c9d4 !important;
+    }
+
+    /* 卡片与侧边栏的深色护眼背景 */
+    html[data-theme="dark"] .article-inner,
+    html[data-theme="dark"] .widget,
+    html[data-theme="dark"] .ormys-root-li,
+    html[data-theme="dark"] .ormys-child-card,
+    html[data-theme="dark"] .timeline-desc {
+      background: #1e2430 !important;
+      border-color: #2c3545 !important;
+      color: #c4c9d4 !important;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
+    }
+
+    /* 拔除文章日期和标签自带的阴间“白光投影” */
+    html[data-theme="dark"] .article-date,
+    html[data-theme="dark"] .article-category-link,
+    html[data-theme="dark"] .article-meta * {
+      color: #8b95a5 !important;
+      text-shadow: none !important; 
+    }
+
+    /* 标题高亮 */
+    html[data-theme="dark"] .article-title,
+    html[data-theme="dark"] .widget-title {
+      color: #e2e8f0 !important;
+    }
+
+    /* 降低图片亮度，保护眼睛 */
+    html[data-theme="dark"] img, html[data-theme="dark"] iframe {
+      filter: brightness(0.85) contrast(1.1); transition: filter 0.3s ease;
+    }
+    html[data-theme="dark"] img:hover { filter: brightness(1) contrast(1.1); }
+
+
+    /* =======================================
+       2. UI 增强组件原生样式 (原封不动)
+       ======================================= */
+    #totop { display: none !important; }
+
+    /* 进度条 */
+    #reading-progress { position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: #258fb8; z-index: 99999; transition: width 0.1s ease; box-shadow: 0 0 10px rgba(37,143,184,0.5); }
     
-    articleImages.forEach(function(img) {
-      // 排除掉已经带链接的图片（比如你故意让图片跳转到别的网站）
-      if (img.parentElement.tagName.toLowerCase() === 'a') return;
-
-      // 创造一个隐形的魔法外衣 (a 标签)
-      var wrapper = document.createElement('a');
-      wrapper.href = img.src; // 链接指向图片原图
-      wrapper.setAttribute('data-fancybox', 'gallery'); // 分配到 "gallery" 组，实现左右滑动切换
-      wrapper.setAttribute('data-caption', img.alt || ''); // 如果你写了图片描述，它会变成灯箱底部的高级字幕
-
-      // 偷梁换柱：用这个 a 标签把图片包裹起来
-      img.parentNode.insertBefore(wrapper, img);
-      wrapper.appendChild(img);
-    });
-
-    // 正式启动 Fancybox 引擎
-    Fancybox.bind("[data-fancybox]", {
-      // 极客专属配置区
-      Images: {
-        zoom: true, // 开启平滑的缩放动画
-      },
-      Toolbar: {
-        display: [
-          "zoom",        // 放大按钮
-          "slideShow",   // 自动播放幻灯片
-          "fullscreen",  // 全屏按钮
-          "download",    // 允许访客下载你的原图
-          "close"        // 关闭按钮
-        ]
-      }
-    });
-  });
-</script>
-
-<style>
-  /* 图片视觉微调：暗示访客“我是可以点的” */
-  .article-entry img {
-    cursor: zoom-in; /* 鼠标放上去变成放大镜 🔍 */
-    border-radius: 8px; /* 给图片加个圆润的边角，更契合现代审美 */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  /* 鼠标悬浮时，图片轻微浮起 */
-  .article-entry img:hover {
-    transform: scale(1.01);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-  }
-</style>
-
-<div id="reading-progress"></div>
-
-<div id="custom-back-to-top" title="回到顶部">
-  <span class="progress-text">0%</span>
-  <span class="rocket-icon">🚀</span>
-</div>
-
-<style>
-  /* 屏蔽原主题呆板的向上箭头 */
-  #totop { display: none !important; }
-
-  /* 进度条样式 */
-  #reading-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 3px;
-    background: #258fb8; /* 你的主题蓝 */
-    z-index: 99999;
-    transition: width 0.1s ease;
-    box-shadow: 0 0 10px rgba(37,143,184,0.5);
-  }
-
-  /* 回到顶部悬浮球样式 */
-  #custom-back-to-top {
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 50px;
-    height: 50px;
-    background: #fff;
-    border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    z-index: 9999;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    overflow: hidden;
-  }
-  #custom-back-to-top.show {
-    opacity: 1;
-    visibility: visible;
-  }
-  #custom-back-to-top:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(37,143,184,0.3);
-    border: 2px solid #258fb8;
-  }
-  
-  /* 按钮里的百分比文字 */
-  .progress-text {
-    font-size: 0.85em;
-    color: #258fb8;
-    font-weight: bold;
-    transition: opacity 0.3s, transform 0.3s;
-  }
-  
-  /* 悬停时冒出来的火箭 */
-  .rocket-icon {
-    position: absolute;
-    font-size: 1.2em;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.3s ease;
-  }
-  #custom-back-to-top:hover .progress-text {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  #custom-back-to-top:hover .rocket-icon {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-<script>
-  // --- 核心大脑逻辑控制区 ---
-  document.addEventListener('DOMContentLoaded', function() {
+    /* 日月开关 */
+    #dark-mode-toggle { position: fixed; bottom: 40px; left: 40px; width: 50px; height: 50px; background: #fff; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 9999; transition: all 0.3s ease; font-size: 1.2em; }
+    #dark-mode-toggle:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(37,143,184,0.3); border: 2px solid #258fb8; }
     
-    // 【功能一 & 功能三】进度条与回到顶部百分比的计算
-    var progressBar = document.getElementById('reading-progress');
-    var backToTopBtn = document.getElementById('custom-back-to-top');
-    var progressText = backToTopBtn.querySelector('.progress-text');
+    /* 悬浮火箭 */
+    #custom-back-to-top { position: fixed; bottom: 40px; right: 40px; width: 50px; height: 50px; background: #fff; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; cursor: pointer; z-index: 9999; opacity: 0; visibility: hidden; transition: all 0.3s ease; overflow: hidden; }
+    #custom-back-to-top.show { opacity: 1; visibility: visible; }
+    #custom-back-to-top:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(37,143,184,0.3); border: 2px solid #258fb8; }
+    
+    /* 两个悬浮球在深色模式下的适配 */
+    html[data-theme="dark"] #dark-mode-toggle, html[data-theme="dark"] #custom-back-to-top { background: #1e2430 !important; border-color: #2c3545 !important; }
+    
+    .progress-text { font-size: 0.85em; color: #258fb8; font-weight: bold; transition: opacity 0.3s, transform 0.3s; }
+    .rocket-icon { position: absolute; font-size: 1.2em; opacity: 0; transform: translateY(20px); transition: all 0.3s ease; }
+    #custom-back-to-top:hover .progress-text { opacity: 0; transform: translateY(-20px); }
+    #custom-back-to-top:hover .rocket-icon { opacity: 1; transform: translateY(0); }
+    
+    /* 图片交互 */
+    .article-entry img { cursor: zoom-in; border-radius: 8px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .article-entry img:hover { transform: scale(1.01); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+  </style>
 
-    window.addEventListener('scroll', function() {
-      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-      var clientHeight = document.documentElement.clientHeight || window.innerHeight;
-      
-      // 核心计算公式
-      var scrollPercent = scrollTop / (scrollHeight - clientHeight);
-      var percentRound = Math.round(scrollPercent * 100);
-      
-      // 防止页面过短导致数值异常
-      if (isNaN(percentRound)) percentRound = 0;
-      if (percentRound > 100) percentRound = 100;
-      if (percentRound < 0) percentRound = 0;
-
-      // 实时改变顶部进度条的长度
-      progressBar.style.width = percentRound + '%';
-
-      // 实时改变悬浮球里的数字
-      progressText.innerText = percentRound + '%';
-
-      // 滚动超过 100 像素才显示悬浮球，否则隐藏
-      if (scrollTop > 100) {
-        backToTopBtn.classList.add('show');
-      } else {
-        backToTopBtn.classList.remove('show');
-      }
-    });
-
-    // 悬浮球的点击事件：丝滑回到顶部
-    backToTopBtn.addEventListener('click', function() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth' // 这个属性是平滑滚动的灵魂
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. 启动沉浸式图片灯箱
+      var articleImages = document.querySelectorAll('.article-entry img');
+      articleImages.forEach(function(img) {
+        if (img.parentElement.tagName.toLowerCase() === 'a') return;
+        var wrapper = document.createElement('a');
+        wrapper.href = img.src; wrapper.setAttribute('data-fancybox', 'gallery'); wrapper.setAttribute('data-caption', img.alt || '');
+        img.parentNode.insertBefore(wrapper, img); wrapper.appendChild(img);
       });
-    });
+      if (typeof Fancybox !== 'undefined') Fancybox.bind("[data-fancybox]", { Images: { zoom: true }, Toolbar: { display: ["zoom", "slideShow", "fullscreen", "download", "close"] }});
 
-    // 【功能二】极客版 AOS 注入：无需逐个修改页面代码
-    // 这里我们用 JS 自动给主页文章、项目卡片、时间轴和分类盒子上“魔法”
-    var animateElements = document.querySelectorAll('.article, .project-card, .timeline-item, .ormys-root-li');
-    animateElements.forEach(function(el) {
-      el.setAttribute('data-aos', 'fade-up'); // 统一设置为向上滑入
-      el.setAttribute('data-aos-duration', '800'); // 动画持续 0.8 秒
-    });
+      // 2. 进度条与回到顶部逻辑
+      var progressBar = document.getElementById('reading-progress'), backToTopBtn = document.getElementById('custom-back-to-top'), progressText = backToTopBtn.querySelector('.progress-text');
+      window.addEventListener('scroll', function() {
+        var scrollPercent = (document.documentElement.scrollTop || document.body.scrollTop) / ((document.documentElement.scrollHeight || document.body.scrollHeight) - (document.documentElement.clientHeight || window.innerHeight));
+        var percentRound = Math.max(0, Math.min(100, Math.round(scrollPercent * 100))) || 0;
+        progressBar.style.width = percentRound + '%'; progressText.innerText = percentRound + '%';
+        if ((document.documentElement.scrollTop || document.body.scrollTop) > 100) backToTopBtn.classList.add('show'); else backToTopBtn.classList.remove('show');
+      });
+      backToTopBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
-    // 正式激活 AOS 动画引擎
-    AOS.init({
-      once: true, // 向下滚动时触发一次动画，向上滚不再重复触发，防止眼晕
-      offset: 60  // 元素距离屏幕底部还有 60px 时就开始滑入
+      // 3. 深色模式日月切换逻辑
+      var toggleBtn = document.getElementById('dark-mode-toggle'), modeIcon = toggleBtn.querySelector('.mode-icon'), htmlElement = document.documentElement;
+      if (htmlElement.getAttribute('data-theme') === 'dark') modeIcon.innerText = '☀️';
+      toggleBtn.addEventListener('click', function() {
+        if (htmlElement.getAttribute('data-theme') === 'dark') {
+          htmlElement.removeAttribute('data-theme'); localStorage.setItem('ormys-theme', 'light');
+          modeIcon.innerText = '🌙'; modeIcon.style.transform = 'rotate(360deg)';
+        } else {
+          htmlElement.setAttribute('data-theme', 'dark'); localStorage.setItem('ormys-theme', 'dark');
+          modeIcon.innerText = '☀️'; modeIcon.style.transform = 'rotate(-360deg)';
+        }
+      });
+
+      // 4. 启动 AOS 丝滑滚动动画
+      var animateElements = document.querySelectorAll('.article, .project-card, .timeline-item, .ormys-root-li');
+      animateElements.forEach(function(el) { el.setAttribute('data-aos', 'fade-up'); el.setAttribute('data-aos-duration', '800'); });
+      if (typeof AOS !== 'undefined') AOS.init({ once: true, offset: 60 });
     });
-  });
-</script>
+  </script>
 </body>
 </html>
